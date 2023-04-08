@@ -1,0 +1,23 @@
+{
+    "acquired": {
+        "translates": ["приобритённый"],
+        "examples": {
+            "The dataset was acquired via a RGB and thermal camera mounted on a vehicle":
+            "Набор данных был получен с помощью RGB и тепловизионной камеры, установленной на транспортном средстве."
+        }
+    },
+    "tight": {
+        "translates": ["плотно", "узко"],
+        "examples": {
+            "Annotators were instructed to make bounding boxes as tight as possible":
+            "Аннотаторам было поручено сделать ограничивающие рамки как можно плотнее."
+        }        
+    },
+    "preserve": {
+        "translates": ["сохранить"],
+        "examples": {
+            "To preserve the aspect ratios of the objects in our images, the recommended approach to resizing is to scale the image so that the longest size is equal to our target size.":
+            "Чтобы сохранить соотношение сторон объектов на наших изображениях, рекомендуемый подход к изменению размера заключается в масштабировании изображения таким образом, чтобы самый длинный размер был равен нашему целевому размеру."
+        }
+    }
+}
