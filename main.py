@@ -116,7 +116,18 @@ def main():
         if window == main_window:
             # Sample
             if event == 'Next':
-                update_sample(main_window, dataset)
+                current_sample = update_sample(main_window, dataset)
+                example_index = 0
+            elif event == '>>>':
+                example_index = (
+                    (example_index + 1) % len(current_sample.examples))
+                update_example(
+                    main_window, current_sample.examples, example_index)
+            elif event == '<<<':
+                example_index = (
+                    (example_index - 1) % len(current_sample.examples))
+                update_example(
+                    main_window, current_sample.examples, example_index)
 
     main_window.close()
 
