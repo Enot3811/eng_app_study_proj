@@ -2,7 +2,7 @@ from pathlib import Path
 
 import PySimpleGUI as sg
 
-from dataset import Dataset
+from dataset import Dataset, Example, Sample
 
 
 DEFAULT_PATH = Path(__file__).parent.absolute() / 'Dictionary' / 'words.json'
