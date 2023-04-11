@@ -25,15 +25,31 @@ def load_dictionary(path: Path = DEFAULT_PATH) -> Dataset:
         return Dataset(path)
 
 
-def make_main_window(dataset: Dataset) -> sg.Window:
-    sample = dataset.random_choice()
+def make_main_window(text_size: int = 70) -> sg.Window:
     layout = [
-        [sg.Text(sample.word, key='word')],
-        [sg.Text(', '.join(sample.translates), key='translates')],
-        [sg.Text(sample.examples[0].eng, key='example_eng')],
-        [sg.Text(sample.examples[0].rus, key='example_rus')],
-        [sg.Button('Next')]]
-    return sg.Window('Eng app', layout, finalize=True)
+        [sg.Frame('Word', [
+            [sg.Input(key='word', size=(text_size, 1),
+                      pad=(5, (10, 5)), disabled=True)],
+            [sg.Multiline(key='translates',
+                          size=(text_size, 2), disabled=True)]
+        ], font=16)],
+        [sg.Frame('Examples', [
+            [sg.Multiline(key='example_eng',
+                          size=(text_size, 4),
+                          pad=(5, (10, 5)),
+                          disabled=True)],
+            [sg.Multiline(key='example_rus',
+                          size=(text_size, 4),
+                          disabled=True)],
+            [
+                sg.Column([[sg.Button('<<<')]]),
+                sg.Column([[sg.Button('Drop example')]], justification='c'),
+                sg.Column([[sg.Button('Add example')]], justification='c'),
+                sg.Column([[sg.Button('>>>')]])
+            ]], font=16)],
+        [sg.Button('Edit sample'), sg.Button('Next')]]
+    return sg.Window(
+        'Eng app', layout, finalize=True, element_padding=(5, 5), font=14)
 
 
 def make_sample_window() -> sg.Window:
@@ -88,9 +104,9 @@ def update_example(window: sg.Window, examples: Example, index: int = 0):
 
 def main():
     dataset = load_dictionary()
-
-    sg.theme('DarkAmber')
-    main_window = make_main_window(dataset)
+    main_window = make_main_window()
+    current_sample = update_sample(main_window, dataset)
+    example_index = 0
 
     while True:
         window, event, values = sg.read_all_windows()
