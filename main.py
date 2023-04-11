@@ -49,7 +49,7 @@ def make_main_window(text_size: int = 70) -> sg.Window:
                 sg.Column([[sg.Button('Add example')]], justification='c'),
                 sg.Column([[sg.Button('>>>')]])
             ]], font=16)],
-        [sg.Button('Edit sample'), sg.Button('Next')]]
+        [sg.Button('Edit sample'), sg.Button('Add sample'), sg.Button('Next')]]
     return sg.Window(
         'Eng app', layout, finalize=True, element_padding=(5, 5), font=14)
 
@@ -115,6 +115,31 @@ def update_example(window: sg.Window, examples: Example, index: int = 0):
     window['example_rus'].update(examples[index].rus)
 
 
+def parse_input(
+    word: str, translate: str, example_eng: str, example_rus: str
+) -> Tuple[str, List[str], str, str]:
+    """
+    Parse input strings. Split a translate string into words,
+    set first character of string to upper case.
+
+    Parameters
+    ----------
+    word : str
+        The word string.
+    translate : str
+        The translate string.
+    example_eng : str
+        The english example string.
+    example_rus : str
+        The russian example string.
+
+    Returns
+    -------
+    Tuple[str, List[str], str, str]
+        _description_
+    """
+
+
 def main():
     dataset = load_dictionary()
     main_window = make_main_window()
@@ -141,6 +166,23 @@ def main():
                     (example_index - 1) % len(current_sample.examples))
                 update_example(
                     main_window, current_sample.examples, example_index)
+            elif event == 'Add sample':
+                main_window.hide()
+                sample_window = make_sample_window()
+        if window == sample_window:
+            if event == 'Add sample':
+                word = values['word']
+                translates = values['translates']
+                example_eng = values['example_eng']
+                example_rus = values['example_rus']
+                
+                Sample(
+                    word, 
+                )
+                print()
+
+                sample_window.close()
+                main_window.UnHide()
 
     main_window.close()
 
