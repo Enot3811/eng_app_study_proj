@@ -43,7 +43,22 @@ def make_sample_window() -> sg.Window:
     return sg.Window('Sample', layout, finalize=True)
 
 
-def update_sample(window: sg.Window, dataset: Dataset) -> None:
+def update_sample(window: sg.Window, dataset: Dataset) -> Sample:
+    """
+    Show a new random sample on a given window.
+
+    Parameters
+    ----------
+    window : sg.Window
+        The window that shows samples.
+    dataset : Dataset
+        A dataset of words.
+
+    Returns
+    -------
+    Sample
+        The showed sample.
+    """
     while True:
         sample = dataset.random_choice()
         if sample.word != window['word'].get():
