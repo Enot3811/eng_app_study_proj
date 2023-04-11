@@ -52,11 +52,22 @@ def make_main_window(text_size: int = 70) -> sg.Window:
         'Eng app', layout, finalize=True, element_padding=(5, 5), font=14)
 
 
-def make_sample_window() -> sg.Window:
+def make_sample_window(text_size: int = 70) -> sg.Window:
     layout = [
-        [sg.Text('There will be some content.')],
-        [sg.Button('Next')]]
-    return sg.Window('Sample', layout, finalize=True)
+        [sg.Frame('Word', [
+            [sg.Input(key='word', size=(text_size, 1), pad=(5, (10, 5)))],
+            [sg.Multiline(key='translates', size=(text_size, 2))]
+        ], font=16)],
+        [sg.Frame('Examples', [
+            [sg.Multiline(key='example_eng',
+                          size=(text_size, 4),
+                          pad=(5, (10, 5)))],
+            [sg.Multiline(key='example_rus',
+                          size=(text_size, 4))]
+        ], font=16)],
+        [sg.Column([[sg.Button('Add sample')]], justification='c')]]
+    return sg.Window(
+        'Eng app', layout, finalize=True, element_padding=(5, 5), font=14)
 
 
 def update_sample(window: sg.Window, dataset: Dataset) -> Sample:
