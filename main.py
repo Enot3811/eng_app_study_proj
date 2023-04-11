@@ -1,11 +1,13 @@
 from pathlib import Path
+import sys
+from typing import List, Tuple
 
 import PySimpleGUI as sg
 
 from dataset import Dataset, Example, Sample
 
 
-DEFAULT_PATH = Path(__file__).parent.absolute() / 'Dictionary' / 'words.json'
+DEFAULT_PATH = Path(sys.argv[0]).parent / 'words.json'
 
 
 def load_dictionary(path: Path = DEFAULT_PATH) -> Dataset:
