@@ -65,8 +65,25 @@ def update_sample(window: sg.Window, dataset: Dataset) -> Sample:
             break
     window['word'].update(sample.word)
     window['translates'].update(', '.join(sample.translates))
-    window['example_eng'].update(sample.examples[0].eng)
-    window['example_rus'].update(sample.examples[0].rus)
+    update_example(window, sample.examples)
+    return sample
+
+
+def update_example(window: sg.Window, examples: Example, index: int = 0):
+    """
+    Load a new example of a sample on a given window.
+
+    Parameters
+    ----------
+    window : sg.Window
+        The window that shows samples.
+    examples : Example
+        The examples of the sample.
+    index : int, optional
+        An index of the example.
+    """
+    window['example_eng'].update(examples[index].eng)
+    window['example_rus'].update(examples[index].rus)
 
 
 def main():
