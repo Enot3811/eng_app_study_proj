@@ -72,30 +72,46 @@ def make_sample_window(text_size: int = 70) -> sg.Window:
         'Eng app', layout, finalize=True, element_padding=(5, 5), font=14)
 
 
-def update_sample(window: sg.Window, dataset: Dataset) -> Sample:
+def get_new_random_sample(current_sample: Sample, dataset: Dataset) -> Sample:
     """
-    Show a new random sample on a given window.
+    Get a new random sample from the dataset.
+
+    Parameters
+    ----------
+    current_sample : Sample
+        A current sample.
+    dataset : Dataset
+        The dataset.
+
+    Returns
+    -------
+    Sample
+        The new sample from the dataset.
+    """
+    # Iterate while word of current and gotten sample is equal.
+    # It is need to avoid returning of the same sample.
+    while True:
+        sample = dataset.random_choice()
+        if sample.word != current_sample['word']:
+            break
+    return sample
+
+
+def update_sample(window: sg.Window, sample: Sample) -> None:
+    """
+    Show a given sample on a given window.
 
     Parameters
     ----------
     window : sg.Window
         The window that shows samples.
-    dataset : Dataset
-        A dataset of words.
-
-    Returns
-    -------
-    Sample
-        The showed sample.
+    sample : Sample
+        The sample to show.
     """
-    while True:
-        sample = dataset.random_choice()
-        if sample.word != window['word'].get():
-            break
-    window['word'].update(sample.word)
-    window['translates'].update(', '.join(sample.translates))
+    sample.word
+    window['word'].update(sample.word.title())
+    window['translates'].update(', '.join(sample.translates).title())
     update_example(window, sample.examples)
-    return sample
 
 
 def update_example(window: sg.Window, examples: Example, index: int = 0):
