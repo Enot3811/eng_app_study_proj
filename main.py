@@ -195,22 +195,28 @@ def main():
                 main_window.hide()
                 sample_window = make_sample_window()
         elif window == sample_window:
+            # Go to main
             if event == sg.WIN_CLOSED:
                 sample_window.close()
                 main_window.UnHide()
+            # Sample
             elif event == 'Add sample':
                 word = values['word']
                 translates = values['translates']
                 example_eng = values['example_eng']
                 example_rus = values['example_rus']
-                
-                Sample(
-                    word, 
+                word, translates, example_eng, example_rus = parse_input(
+                    word, translates, example_eng, example_rus
                 )
-                print()
-
-                sample_window.close()
-                main_window.UnHide()
+                if not dataset.add_sample(word, translates, example_eng,
+                                          example_rus):
+                    sg.popup_ok(f'The dataset has already the word "{word}".')
+                # Go to main
+                else:
+                    sample_window.close()
+                    main_window.UnHide()
+                    sample = dataset[word]
+                    update_sample(main_window, sample)
 
     main_window.close()
 
