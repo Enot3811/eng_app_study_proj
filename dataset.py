@@ -75,13 +75,13 @@ class Dataset:
         bool
             Whether the given sample is added to the dataset.
         """
-        if not self.samples.get(word, False):
+        if self.samples.get(word, False):
             return False
-        
-        self.samples[word] = {
-            "translates": translates,
-            "examples": {
-                example_eng: example_rus
+        else:
+            self.samples[word] = {
+                "translates": translates,
+                "examples": {
+                    example_eng: example_rus
+                }
             }
-        }
-        return True
+            return True
