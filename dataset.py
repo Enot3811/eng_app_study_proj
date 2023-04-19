@@ -29,8 +29,25 @@ class Dataset:
     def __len__(self) -> int:
         return len(self.samples)
             
-    def __getitem__(self, word: str) -> SampleDict:
-        return self.samples[word]
+    def __getitem__(self, word: str) -> Sample:
+        """
+        Return a sample by a word.
+
+        Parameters
+        ----------
+        word : str
+            The required word.
+
+        Returns
+        -------
+        Sample
+            The required sample.
+        """
+        sample_dict = self.samples[word]
+        translates = sample_dict['translates']
+        examples = [Example(eng, rus)
+                    for eng, rus in sample_dict['examples'].items()]
+        return Sample(word, translates, examples)
     
     def random_choice(self) -> Sample:
         """Get random sample from dataset.
@@ -42,11 +59,7 @@ class Dataset:
             and some example sentences.
         """
         word = random.choice(list(self.samples.keys()))
-        sample_dict = self[word]
-        translates = sample_dict['translates']
-        examples = [Example(eng, rus)
-                    for eng, rus in sample_dict['examples'].items()]
-        return Sample(word, translates, examples)
+        return self[word]
     
     def add_sample(
         self,
