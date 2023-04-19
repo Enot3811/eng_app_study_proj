@@ -4,8 +4,10 @@ from typing import Dict, Union, List
 from collections import namedtuple
 import random
 
+# Dicts like in words.json
 SampleDict = Dict[str, Union[List[str], Dict[str, str]]]
 DataDict = Dict[str, SampleDict]
+
 Sample = namedtuple('Sample', ['word', 'translates', 'examples'])
 Example = namedtuple('Example', ['eng', 'rus'])
 
@@ -45,3 +47,41 @@ class Dataset:
         examples = [Example(eng, rus)
                     for eng, rus in sample_dict['examples'].items()]
         return Sample(word, translates, examples)
+    
+    def add_sample(
+        self,
+        word: str,
+        translates: List[str],
+        example_eng: str,
+        example_rus: str
+    ) -> bool:
+        """
+        Add a given sample to a dataset if the dataset does not already have
+        the same word.
+
+        Parameters
+        ----------
+        word : str
+            The word string of the sample.
+        translates : List[str]
+            A list of translates of the sample.
+        example_eng : str
+            An english example string of the sample.
+        example_rus : str
+            A russian example string of the sample.
+
+        Returns
+        -------
+        bool
+            Whether the given sample is added to the dataset.
+        """
+        if not self.samples.get(word, False):
+            return False
+        
+        self.samples[word] = {
+            "translates": translates,
+            "examples": {
+                example_eng: example_rus
+            }
+        }
+        return True
