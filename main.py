@@ -92,7 +92,7 @@ def get_new_random_sample(current_sample: Sample, dataset: Dataset) -> Sample:
     # It is need to avoid returning of the same sample.
     while True:
         sample = dataset.random_choice()
-        if sample.word != current_sample['word']:
+        if sample.word != current_sample.word:
             break
     return sample
 
