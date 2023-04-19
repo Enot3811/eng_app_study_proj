@@ -162,7 +162,8 @@ def parse_input(
 def main():
     dataset = load_dictionary()
     main_window = make_main_window()
-    current_sample = update_sample(main_window, dataset)
+    current_sample = dataset.random_choice()
+    update_sample(main_window, current_sample)
     example_index = 0
 
     while True:
@@ -176,7 +177,8 @@ def main():
                 break
             # Main sample
             if event == 'Next':
-                current_sample = update_sample(main_window, dataset)
+                current_sample = get_new_random_sample(current_sample, dataset)
+                update_sample(main_window, current_sample)
                 example_index = 0
             elif event == '>>>':
                 example_index = (
