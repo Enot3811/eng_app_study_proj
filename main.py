@@ -171,7 +171,10 @@ def main():
             break
 
         if window == main_window:
-            # Sample
+            # Exit
+            if event == sg.WIN_CLOSED:
+                break
+            # Main sample
             if event == 'Next':
                 current_sample = update_sample(main_window, dataset)
                 example_index = 0
@@ -185,11 +188,15 @@ def main():
                     (example_index - 1) % len(current_sample.examples))
                 update_example(
                     main_window, current_sample.examples, example_index)
+            # Go to sample
             elif event == 'Add sample':
                 main_window.hide()
                 sample_window = make_sample_window()
-        if window == sample_window:
-            if event == 'Add sample':
+        elif window == sample_window:
+            if event == sg.WIN_CLOSED:
+                sample_window.close()
+                main_window.UnHide()
+            elif event == 'Add sample':
                 word = values['word']
                 translates = values['translates']
                 example_eng = values['example_eng']
