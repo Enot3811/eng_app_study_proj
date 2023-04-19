@@ -120,7 +120,7 @@ def parse_input(
 ) -> Tuple[str, List[str], str, str]:
     """
     Parse input strings. Split a translate string into words,
-    set first character of string to upper case.
+    set all characters to lower case.
 
     Parameters
     ----------
@@ -136,8 +136,11 @@ def parse_input(
     Returns
     -------
     Tuple[str, List[str], str, str]
-        _description_
+        Parsed input strings
     """
+    word = word.lower()
+    translate = translate.lower().replace(',', '').split()
+    return word, translate, example_eng, example_rus
 
 
 def main():
