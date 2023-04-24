@@ -111,3 +111,15 @@ class Dataset:
                 }
             }
             return True
+        
+    def save_dataset(self, path: Path):
+        json_dict = {}
+        for word in self:
+            sample = self[word]
+            json_dict[word] = {
+                "translates": sample.translates,
+                "examples": {eng: rus for eng, rus in sample.examples}
+            }
+        with open(path, 'w') as f:
+            json.dump(
+                json_dict, f, sort_keys=False, indent=4, ensure_ascii=False)

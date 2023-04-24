@@ -201,6 +201,7 @@ def main():
                     sample = dataset[word]
                     update_sample(main_window, sample)
 
+    dataset.save_dataset(DEFAULT_PATH)
     main_window.close()
 
 
