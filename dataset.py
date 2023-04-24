@@ -28,6 +28,19 @@ class Dataset:
 
     def __len__(self) -> int:
         return len(self.samples)
+    
+    def __iter__(self) -> 'Dataset':
+        self.iterator = iter(self.samples)
+        self.iter_index = 0
+        return self
+    
+    def __next__(self) -> str:
+        if self.iter_index <= len(self.samples):
+            word = next(self.iterator)
+            self.iter_index += 1
+            return word
+        else:
+            raise StopIteration
             
     def __getitem__(self, word: str) -> Sample:
         """
