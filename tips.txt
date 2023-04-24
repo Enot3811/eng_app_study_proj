@@ -1,0 +1,2 @@
+To compile project type
+python -m nuitka --follow-imports main.py --remove-output
