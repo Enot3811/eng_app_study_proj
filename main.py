@@ -10,23 +10,6 @@ from dataset import Dataset, Example, Sample
 DEFAULT_PATH = Path(sys.argv[0]).parent / 'words.json'
 
 
-def load_dictionary(path: Path = DEFAULT_PATH) -> Dataset:
-    """Load a dictionary database.
-
-    Parameters
-    ----------
-    path : Path, optional
-        A path to database json.
-
-    Returns
-    -------
-    Dataset
-        A dataset of words.
-    """
-    if path.exists():
-        return Dataset(path)
-
-
 def make_main_window(text_size: int = 70) -> sg.Window:
     layout = [
         [sg.Frame('Word', [
@@ -157,10 +140,10 @@ def parse_input(
     word = word.lower()
     translate = translate.lower().replace(',', '').split()
     return word, translate, example_eng, example_rus
-
+    
 
 def main():
-    dataset = load_dictionary()
+    dataset = Dataset(DEFAULT_PATH)
     main_window = make_main_window()
     current_sample = dataset.random_choice()
     update_sample(main_window, current_sample)
