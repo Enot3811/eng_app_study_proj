@@ -1,2 +1,5 @@
-pysimplegui
-nuitka
+# Linting
+flake8
+
+# Work-packages
+pyside6
