@@ -116,6 +116,21 @@ class Dataset:
         """
         return word in self._word_to_idx
     
+    def get_word_index(self, word: str) -> int:
+        """Get an index of given word's sample in this dataset.
+
+        Parameters
+        ----------
+        word : str
+            The word whose index is to be obtained.
+
+        Returns
+        -------
+        int
+            The index of given word.
+        """
+        return self._word_to_idx[word]
+    
     def random_choice(self, exclude: List[str] = None) -> sample_type:
         """Get a random sample from this dataset.
 
