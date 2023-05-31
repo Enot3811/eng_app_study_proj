@@ -47,8 +47,8 @@ from typing import Dict, Union, List
 import random
 
 
-examples_dict = Dict[str, str]
-examples_list = List[examples_dict]
+example_dict = Dict[str, str]
+examples_list = List[example_dict]
 translates_list = List[str]
 sample_type = Dict[str, Union[str, translates_list, examples_list]]
 samples_list = List[sample_type]
