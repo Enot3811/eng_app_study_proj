@@ -116,15 +116,24 @@ class Dataset:
         """
         return word in self._word_to_idx
     
-    def random_choice(self) -> sample_type:
+    def random_choice(self, exclude: List[str] = None) -> sample_type:
         """Get a random sample from this dataset.
+
+        Parameters
+        ----------
+        exclude : List[str], optional
+            A list of words to avoid when getting a random sample.
 
         Returns
         -------
         sample_type
             The random sample.
         """
-        return self[random.randint(0, len(self) - 1)]
+        indexes = list(range(len(self)))
+        if exclude:
+            for ex_word in exclude:
+                indexes.pop(self._word_to_idx[ex_word])
+        return self[random.choice(indexes)]
     
     def add_sample(
         self,
