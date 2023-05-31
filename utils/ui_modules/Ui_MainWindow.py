@@ -16,15 +16,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QMenuBar, QPlainTextEdit, QPushButton,
-    QSizePolicy, QStatusBar, QTextEdit, QVBoxLayout,
-    QWidget)
+    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QTextEdit, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(610, 470)
+        MainWindow.resize(610, 520)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -37,7 +36,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 591, 161))
+        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 591, 180))
         self.wordVerticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.wordVerticalLayout.setSpacing(10)
         self.wordVerticalLayout.setObjectName(u"wordVerticalLayout")
@@ -87,7 +86,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 190, 591, 211))
+        self.verticalLayoutWidget_2.setGeometry(QRect(10, 210, 591, 223))
         self.examplesVerticalLayout = QVBoxLayout(self.verticalLayoutWidget_2)
         self.examplesVerticalLayout.setSpacing(10)
         self.examplesVerticalLayout.setObjectName(u"examplesVerticalLayout")
@@ -98,19 +97,19 @@ class Ui_MainWindow(object):
 
         self.examplesVerticalLayout.addWidget(self.exampleZoneLabel)
 
-        self.textEdit = QTextEdit(self.verticalLayoutWidget_2)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setEnabled(True)
-        self.textEdit.setReadOnly(True)
+        self.engExampleTextEdit = QTextEdit(self.verticalLayoutWidget_2)
+        self.engExampleTextEdit.setObjectName(u"engExampleTextEdit")
+        self.engExampleTextEdit.setEnabled(True)
+        self.engExampleTextEdit.setReadOnly(True)
 
-        self.examplesVerticalLayout.addWidget(self.textEdit)
+        self.examplesVerticalLayout.addWidget(self.engExampleTextEdit)
 
-        self.plainTextEdit = QPlainTextEdit(self.verticalLayoutWidget_2)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        self.plainTextEdit.setEnabled(True)
-        self.plainTextEdit.setReadOnly(True)
+        self.rusExampleTextEdit = QTextEdit(self.verticalLayoutWidget_2)
+        self.rusExampleTextEdit.setObjectName(u"rusExampleTextEdit")
+        self.rusExampleTextEdit.setEnabled(True)
+        self.rusExampleTextEdit.setReadOnly(True)
 
-        self.examplesVerticalLayout.addWidget(self.plainTextEdit)
+        self.examplesVerticalLayout.addWidget(self.rusExampleTextEdit)
 
         self.exampleButtonsHorizontalLayout = QHBoxLayout()
         self.exampleButtonsHorizontalLayout.setSpacing(10)
@@ -145,7 +144,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
-        self.horizontalLayoutWidget_2.setGeometry(QRect(10, 420, 591, 29))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(10, 450, 591, 29))
         self.actionButtonHorizontalLayout = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.actionButtonHorizontalLayout.setSpacing(20)
         self.actionButtonHorizontalLayout.setObjectName(u"actionButtonHorizontalLayout")
@@ -187,8 +186,8 @@ class Ui_MainWindow(object):
         self.editSampleButton.setText(QCoreApplication.translate("MainWindow", u"Edit Sample", None))
         self.deleteSampleButton.setText(QCoreApplication.translate("MainWindow", u"Delete Sample", None))
         self.exampleZoneLabel.setText(QCoreApplication.translate("MainWindow", u"Examples", None))
-        self.textEdit.setPlaceholderText("")
-        self.plainTextEdit.setPlaceholderText("")
+        self.engExampleTextEdit.setPlaceholderText("")
+        self.rusExampleTextEdit.setPlaceholderText("")
         self.leftExampleButton.setText(QCoreApplication.translate("MainWindow", u"<<<", None))
         self.addExampleButton.setText(QCoreApplication.translate("MainWindow", u"Add Example", None))
         self.editExampleButton.setText(QCoreApplication.translate("MainWindow", u"Edit Example", None))

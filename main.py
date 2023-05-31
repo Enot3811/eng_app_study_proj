@@ -11,7 +11,7 @@ from utils.database_utils import Dataset
 def main():
     application = QApplication()
     dataset = Dataset('words.json')
-    main_window = MainWindow()
+    main_window = MainWindow(dataset)
     main_window.show()
     application.exec()
 
