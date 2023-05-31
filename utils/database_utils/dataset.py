@@ -124,7 +124,7 @@ class Dataset:
         sample_type
             The random sample.
         """
-        return self[random.randint(0, len(self))]
+        return self[random.randint(0, len(self) - 1)]
     
     def add_sample(
         self,
