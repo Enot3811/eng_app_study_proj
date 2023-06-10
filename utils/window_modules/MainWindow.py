@@ -89,3 +89,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         examples = self.current_sample['examples']
         self.current_example = (self.current_example - 1) % len(examples)
         self._show_example(examples[self.current_example])
+
+    def closeEvent(self, close_event):
+        self.dataset.save_dataset(Path(sys.argv[0]).parent / 'words.json')

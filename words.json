@@ -7,7 +7,7 @@
         "examples": [
             {
                 "example_eng": "The dataset was acquired via a RGB and thermal camera mounted on a vehicle",
-                "examples_rus": "Набор данных был получен с помощью RGB и тепловизионной камеры, установленной на транспортном средстве."
+                "example_rus": "Набор данных был получен с помощью RGB и тепловизионной камеры, установленной на транспортном средстве."
             }
         ]
     },
@@ -20,7 +20,7 @@
         "examples": [
             {
                 "example_eng": "Annotators were instructed to make bounding boxes as tight as possible",
-                "examples_rus": "Аннотаторам было поручено сделать ограничивающие рамки как можно плотнее."
+                "example_rus": "Аннотаторам было поручено сделать ограничивающие рамки как можно плотнее."
             }
         ]
     },
@@ -32,7 +32,7 @@
         "examples": [
             {
                 "example_eng": "To preserve the aspect ratios of the objects in our images, the recommended approach to resizing is to scale the image so that the longest size is equal to our target size.",
-                "examples_rus": "Чтобы сохранить соотношение сторон объектов на наших изображениях, рекомендуемый подход к изменению размера заключается в масштабировании изображения таким образом, чтобы самый длинный размер был равен нашему целевому размеру."
+                "example_rus": "Чтобы сохранить соотношение сторон объектов на наших изображениях, рекомендуемый подход к изменению размера заключается в масштабировании изображения таким образом, чтобы самый длинный размер был равен нашему целевому размеру."
             }
         ]
     },
@@ -45,7 +45,7 @@
         "examples": [
             {
                 "example_eng": "These will be explored in more detail in the subsequent tutorials.",
-                "examples_rus": "Более подробно они будут рассмотрены в следующих уроках."
+                "example_rus": "Более подробно они будут рассмотрены в следующих уроках."
             }
         ]
     },
@@ -58,7 +58,7 @@
         "examples": [
             {
                 "example_eng": "Save it somewhere accessible.",
-                "examples_rus": "Сохраните это в доступном месте."
+                "example_rus": "Сохраните это в доступном месте."
             }
         ]
     },
@@ -70,20 +70,25 @@
         "examples": [
             {
                 "example_eng": "They don't have a parent and are not nested within another widget or layout.",
-                "examples_rus": "У них нет родителя, и они не вложены в другой виджет или слой."
+                "example_rus": "У них нет родителя, и они не вложены в другой виджет или слой."
             }
         ]
     },
     {
         "word": "hold",
         "translates": [
-            "держит",
-            "содержит"
+            "держать",
+            "содержать",
+            "удерживать"
         ],
         "examples": [
             {
                 "example_eng": "It holds the user-interface of your application.",
-                "examples_rus": "Это содержит пользовательский интерфейс вашего приложения."
+                "example_rus": "Это содержит пользовательский интерфейс вашего приложения."
+            },
+            {
+                "example_eng": "Hold this position.",
+                "example_rus": "Удерживайте эту позицию."
             }
         ]
     },
@@ -95,7 +100,7 @@
         "examples": [
             {
                 "example_eng": "The core loop which governs all user interaction with the GUI.",
-                "examples_rus": "Главный цикл, который управляет всеми пользовательскими взаимодействиями с GUI."
+                "example_rus": "Главный цикл, который управляет всеми пользовательскими взаимодействиями с GUI."
             }
         ]
     },
@@ -107,7 +112,7 @@
         "examples": [
             {
                 "example_eng": "Signals are notifications emitted by widgets when something happens.",
-                "examples_rus": "Сигналы - это уведомления, излучаемые виджетами, когда что-то происходит."
+                "example_rus": "Сигналы - это уведомления, излучаемые виджетами, когда что-то происходит."
             }
         ]
     },
@@ -121,7 +126,7 @@
         "examples": [
             {
                 "example_eng": "If a widget does not provide a signal that sends the current state, you will need to retrieve the value from the widget directly in your handler.",
-                "examples_rus": "Если виджет не предоставляет сигнал, который отправляет текущее состояние, вам будет необходимо получить значение из виджета непосредственно в вашем обработчике."
+                "example_rus": "Если виджет не предоставляет сигнал, который отправляет текущее состояние, вам будет необходимо получить значение из виджета непосредственно в вашем обработчике."
             }
         ]
     },
@@ -134,7 +139,7 @@
         "examples": [
             {
                 "example_eng": "When a signal is fired from the widgets.",
-                "examples_rus": "Когда сигнал срабатывает от виджета."
+                "example_rus": "Когда сигнал срабатывает от виджета."
             }
         ]
     },
@@ -146,7 +151,7 @@
         "examples": [
             {
                 "example_eng": "You can alter the way your widgets respond to these events.",
-                "examples_rus": "Вы можете изменить способ, которым ваши виджеты реагируют на эти события."
+                "example_rus": "Вы можете изменить способ, которым ваши виджеты реагируют на эти события."
             }
         ]
     }
