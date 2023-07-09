@@ -65,6 +65,9 @@ class Dataset:
             data = f.read()
         self._samples: samples_list = json.loads(data)
 
+        self._samples = list(sorted(self._samples,
+                                    key=lambda sample: sample['word']))
+
         self._word_to_idx = {sample['word']: i
                              for i, sample in enumerate(self._samples)}
 
