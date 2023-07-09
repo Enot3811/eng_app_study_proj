@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QSizePolicy
 
 sys.path.append(Path(__file__).parents[2])
 from utils.ui_modules import Ui_MainWindow
@@ -28,6 +28,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set up main page
         self._show_sample(self._current_sample)
 
+        # Set up add sample page
+        self.add_sample_msgs_labels = [
+            self.newWordMsgLabel, self.newWordTranslateMsgLabel,
+            self.newWordExampleEngMsgLabel, self.newWordExampleRusMsgLabel]
+        success_label_policy = QSizePolicy()
+        success_label_policy.setRetainSizeWhenHidden(True)
+        self.successful_save_label.setSizePolicy(success_label_policy)
+
     def _setup_handlers(self):
         """Setup event handlers connections."""
         self.rightExampleButton.clicked.connect(
@@ -44,6 +52,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self._to_add_sample_button_click)
         self.fromAddToMainPushButton.clicked.connect(
             self._from_add_to_main_button_click)
+        self.saveNewSampleButton.clicked.connect(
+            self._save_new_sample_button_click)
+        self.clearAddSamplePageButton.clicked.connect(
+            self._clear_add_sample_page)
 
     def _show_sample(self, sample: sample_type, example_idx: int = 0):
         """Show a given sample on this form.
@@ -104,12 +116,55 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._current_example = (self._current_example - 1) % len(examples)
         self._show_example(examples[self._current_example])
 
-    def _to_add_sample_button_click(self):
+    def _clear_add_sample_page(self):
+        for label in self.add_sample_msgs_labels:
+            label.setStyleSheet('QLabel { font-size: 12pt; color : black; }')
+        for text_input in [self.newWordLineEdit,
+                           self.newWordTranslateTextEdit,
+                           self.newWordExampleEngTextEdit,
+                           self.newWordExampleRusTextEdit]:
+            text_input.clear()
         self.successful_save_label.setVisible(False)
+        
+    def _to_add_sample_button_click(self):
+        self._clear_add_sample_page()
         self.stackedWidget.setCurrentIndex(self.page_idxs['add_sample'])
 
     def _from_add_to_main_button_click(self):
         self.stackedWidget.setCurrentIndex(self.page_idxs['main'])
+
+    def _save_new_sample_button_click(self):
+        word = self.newWordLineEdit.text()
+        translate = self.newWordTranslateTextEdit.toPlainText()
+        example_eng = self.newWordExampleEngTextEdit.toPlainText()
+        example_rus = self.newWordExampleRusTextEdit.toPlainText()
+        
+        correct = True
+        for text, label in zip([word, translate, example_eng, example_rus],
+                               self.add_sample_msgs_labels):
+            if text.isspace() or text == '':
+                label.setStyleSheet('QLabel { font-size: 12pt; color : red; }')
+                correct = False
+            else:
+                label.setStyleSheet(
+                    'QLabel { font-size: 12pt; color : black; }')
+        
+        if correct:
+            word = word.strip()
+            self.newWordLineEdit.setText(word)
+            translate = translate.strip()
+            self.newWordTranslateTextEdit.setText(translate)
+            translate = translate.replace(',', ' ').split()
+            example_eng = example_eng.strip()
+            self.newWordExampleEngTextEdit.setText(example_eng)
+            example_rus = example_rus.strip()
+            self.newWordExampleRusTextEdit.setText(example_rus)
+
+            self.dataset.add_sample(word, translate, example_eng, example_rus)
+            self.successful_save_label.setVisible(True)
+            # Show new sample on main page
+            self._current_sample = self.dataset[word]
+            self._show_sample(self._current_sample)
 
     def closeEvent(self, close_event):
         self.dataset.save_dataset(Path(sys.argv[0]).parent / 'words.json')
