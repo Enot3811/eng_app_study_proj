@@ -15,15 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QStatusBar, QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFormLayout, QHBoxLayout, QLabel,
+    QLineEdit, QMainWindow, QMenuBar, QPushButton,
+    QSizePolicy, QStackedWidget, QStatusBar, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(610, 520)
+        MainWindow.resize(610, 530)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -34,9 +35,14 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayoutWidget = QWidget(self.centralwidget)
+        self.stackedWidget = QStackedWidget(self.centralwidget)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setGeometry(QRect(9, 9, 591, 471))
+        self.mainPage = QWidget()
+        self.mainPage.setObjectName(u"mainPage")
+        self.verticalLayoutWidget = QWidget(self.mainPage)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 591, 180))
+        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 591, 181))
         self.wordVerticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.wordVerticalLayout.setSpacing(10)
         self.wordVerticalLayout.setObjectName(u"wordVerticalLayout")
@@ -66,10 +72,10 @@ class Ui_MainWindow(object):
         self.sampleEditingButtonHorizontalLayout = QHBoxLayout()
         self.sampleEditingButtonHorizontalLayout.setSpacing(15)
         self.sampleEditingButtonHorizontalLayout.setObjectName(u"sampleEditingButtonHorizontalLayout")
-        self.addSampleButton = QPushButton(self.verticalLayoutWidget)
-        self.addSampleButton.setObjectName(u"addSampleButton")
+        self.toAddSampleButton = QPushButton(self.verticalLayoutWidget)
+        self.toAddSampleButton.setObjectName(u"toAddSampleButton")
 
-        self.sampleEditingButtonHorizontalLayout.addWidget(self.addSampleButton)
+        self.sampleEditingButtonHorizontalLayout.addWidget(self.toAddSampleButton)
 
         self.editSampleButton = QPushButton(self.verticalLayoutWidget)
         self.editSampleButton.setObjectName(u"editSampleButton")
@@ -84,9 +90,12 @@ class Ui_MainWindow(object):
 
         self.wordVerticalLayout.addLayout(self.sampleEditingButtonHorizontalLayout)
 
-        self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
+        self.translateTextEdit.raise_()
+        self.wordZoneLabel.raise_()
+        self.wordLineEdit.raise_()
+        self.verticalLayoutWidget_2 = QWidget(self.mainPage)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 210, 591, 223))
+        self.verticalLayoutWidget_2.setGeometry(QRect(0, 200, 591, 223))
         self.examplesVerticalLayout = QVBoxLayout(self.verticalLayoutWidget_2)
         self.examplesVerticalLayout.setSpacing(10)
         self.examplesVerticalLayout.setObjectName(u"examplesVerticalLayout")
@@ -142,9 +151,9 @@ class Ui_MainWindow(object):
 
         self.examplesVerticalLayout.addLayout(self.exampleButtonsHorizontalLayout)
 
-        self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)
+        self.horizontalLayoutWidget_2 = QWidget(self.mainPage)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
-        self.horizontalLayoutWidget_2.setGeometry(QRect(10, 450, 591, 29))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(0, 440, 591, 29))
         self.actionButtonHorizontalLayout = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.actionButtonHorizontalLayout.setSpacing(20)
         self.actionButtonHorizontalLayout.setObjectName(u"actionButtonHorizontalLayout")
@@ -164,6 +173,94 @@ class Ui_MainWindow(object):
 
         self.actionButtonHorizontalLayout.addWidget(self.nextSampleButton)
 
+        self.stackedWidget.addWidget(self.mainPage)
+        self.sampleAddPage = QWidget()
+        self.sampleAddPage.setObjectName(u"sampleAddPage")
+        self.saveNewSampleButton = QPushButton(self.sampleAddPage)
+        self.saveNewSampleButton.setObjectName(u"saveNewSampleButton")
+        self.saveNewSampleButton.setGeometry(QRect(180, 0, 161, 25))
+        self.wordZoneTitleLabel = QLabel(self.sampleAddPage)
+        self.wordZoneTitleLabel.setObjectName(u"wordZoneTitleLabel")
+        self.wordZoneTitleLabel.setGeometry(QRect(1, 1, 165, 22))
+        self.wordZoneTitleLabel.setFont(font1)
+        self.layoutWidget = QWidget(self.sampleAddPage)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(0, 30, 591, 347))
+        self.sampleAddAreaFormLayout = QFormLayout(self.layoutWidget)
+        self.sampleAddAreaFormLayout.setObjectName(u"sampleAddAreaFormLayout")
+        self.sampleAddAreaFormLayout.setHorizontalSpacing(10)
+        self.sampleAddAreaFormLayout.setVerticalSpacing(10)
+        self.sampleAddAreaFormLayout.setContentsMargins(0, 10, 0, 10)
+        self.newWordLineEdit = QLineEdit(self.layoutWidget)
+        self.newWordLineEdit.setObjectName(u"newWordLineEdit")
+        self.newWordLineEdit.setEnabled(True)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.newWordLineEdit.sizePolicy().hasHeightForWidth())
+        self.newWordLineEdit.setSizePolicy(sizePolicy1)
+        self.newWordLineEdit.setMinimumSize(QSize(350, 0))
+        self.newWordLineEdit.setReadOnly(False)
+
+        self.sampleAddAreaFormLayout.setWidget(0, QFormLayout.LabelRole, self.newWordLineEdit)
+
+        self.newWordMsgLabel = QLabel(self.layoutWidget)
+        self.newWordMsgLabel.setObjectName(u"newWordMsgLabel")
+
+        self.sampleAddAreaFormLayout.setWidget(0, QFormLayout.FieldRole, self.newWordMsgLabel)
+
+        self.newWordTranslateTextEdit = QTextEdit(self.layoutWidget)
+        self.newWordTranslateTextEdit.setObjectName(u"newWordTranslateTextEdit")
+        self.newWordTranslateTextEdit.setEnabled(True)
+        self.newWordTranslateTextEdit.setMinimumSize(QSize(350, 60))
+        self.newWordTranslateTextEdit.setReadOnly(False)
+
+        self.sampleAddAreaFormLayout.setWidget(1, QFormLayout.LabelRole, self.newWordTranslateTextEdit)
+
+        self.newWordTranslateMsgLabel = QLabel(self.layoutWidget)
+        self.newWordTranslateMsgLabel.setObjectName(u"newWordTranslateMsgLabel")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.newWordTranslateMsgLabel.sizePolicy().hasHeightForWidth())
+        self.newWordTranslateMsgLabel.setSizePolicy(sizePolicy2)
+
+        self.sampleAddAreaFormLayout.setWidget(1, QFormLayout.FieldRole, self.newWordTranslateMsgLabel)
+
+        self.newWordExampleEngTextEdit = QTextEdit(self.layoutWidget)
+        self.newWordExampleEngTextEdit.setObjectName(u"newWordExampleEngTextEdit")
+        self.newWordExampleEngTextEdit.setEnabled(True)
+        self.newWordExampleEngTextEdit.setMinimumSize(QSize(350, 100))
+        self.newWordExampleEngTextEdit.setReadOnly(False)
+
+        self.sampleAddAreaFormLayout.setWidget(2, QFormLayout.LabelRole, self.newWordExampleEngTextEdit)
+
+        self.newWordExampleRusTextEdit = QTextEdit(self.layoutWidget)
+        self.newWordExampleRusTextEdit.setObjectName(u"newWordExampleRusTextEdit")
+        self.newWordExampleRusTextEdit.setEnabled(True)
+        self.newWordExampleRusTextEdit.setMinimumSize(QSize(350, 100))
+        self.newWordExampleRusTextEdit.setReadOnly(False)
+
+        self.sampleAddAreaFormLayout.setWidget(3, QFormLayout.LabelRole, self.newWordExampleRusTextEdit)
+
+        self.newWordExampleRusMsgLabel = QLabel(self.layoutWidget)
+        self.newWordExampleRusMsgLabel.setObjectName(u"newWordExampleRusMsgLabel")
+        sizePolicy2.setHeightForWidth(self.newWordExampleRusMsgLabel.sizePolicy().hasHeightForWidth())
+        self.newWordExampleRusMsgLabel.setSizePolicy(sizePolicy2)
+
+        self.sampleAddAreaFormLayout.setWidget(3, QFormLayout.FieldRole, self.newWordExampleRusMsgLabel)
+
+        self.newWordExampleEngMsgLabel = QLabel(self.layoutWidget)
+        self.newWordExampleEngMsgLabel.setObjectName(u"newWordExampleEngMsgLabel")
+        sizePolicy2.setHeightForWidth(self.newWordExampleEngMsgLabel.sizePolicy().hasHeightForWidth())
+        self.newWordExampleEngMsgLabel.setSizePolicy(sizePolicy2)
+
+        self.sampleAddAreaFormLayout.setWidget(2, QFormLayout.FieldRole, self.newWordExampleEngMsgLabel)
+
+        self.fromAddToMainPushButton = QPushButton(self.sampleAddPage)
+        self.fromAddToMainPushButton.setObjectName(u"fromAddToMainPushButton")
+        self.fromAddToMainPushButton.setGeometry(QRect(220, 390, 151, 25))
+        self.stackedWidget.addWidget(self.sampleAddPage)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -175,6 +272,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.stackedWidget.setCurrentIndex(0)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -182,7 +282,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Eng app", None))
         self.wordZoneLabel.setText(QCoreApplication.translate("MainWindow", u"Word and translate", None))
         self.wordLineEdit.setText("")
-        self.addSampleButton.setText(QCoreApplication.translate("MainWindow", u"Add Sample", None))
+        self.toAddSampleButton.setText(QCoreApplication.translate("MainWindow", u"Add Sample", None))
         self.editSampleButton.setText(QCoreApplication.translate("MainWindow", u"Edit Sample", None))
         self.deleteSampleButton.setText(QCoreApplication.translate("MainWindow", u"Delete Sample", None))
         self.exampleZoneLabel.setText(QCoreApplication.translate("MainWindow", u"Examples", None))
@@ -196,5 +296,19 @@ class Ui_MainWindow(object):
         self.previousSampleButton.setText(QCoreApplication.translate("MainWindow", u"Previous Sample", None))
         self.randomSampleButton.setText(QCoreApplication.translate("MainWindow", u"Random Sample", None))
         self.nextSampleButton.setText(QCoreApplication.translate("MainWindow", u"Next Sample", None))
+        self.saveNewSampleButton.setText(QCoreApplication.translate("MainWindow", u"Add to dictionary", None))
+        self.wordZoneTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Word and translate", None))
+#if QT_CONFIG(tooltip)
+        self.newWordLineEdit.setToolTip("")
+#endif // QT_CONFIG(tooltip)
+        self.newWordLineEdit.setText("")
+        self.newWordMsgLabel.setText(QCoreApplication.translate("MainWindow", u"Type a new word", None))
+        self.newWordTranslateTextEdit.setDocumentTitle("")
+        self.newWordTranslateMsgLabel.setText(QCoreApplication.translate("MainWindow", u"Type the word's translates", None))
+        self.newWordExampleRusMsgLabel.setText(QCoreApplication.translate("MainWindow", u"Type a translate of\n"
+"the example sentance", None))
+        self.newWordExampleEngMsgLabel.setText(QCoreApplication.translate("MainWindow", u"Type an example sentance\n"
+"that contains the word", None))
+        self.fromAddToMainPushButton.setText(QCoreApplication.translate("MainWindow", u"Back to dictionary", None))
     # retranslateUi
 

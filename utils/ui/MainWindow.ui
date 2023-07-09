@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>610</width>
-    <height>520</height>
+    <height>530</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,220 +25,435 @@
    <string>Eng app</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>9</x>
+      <y>9</y>
       <width>591</width>
-      <height>180</height>
+      <height>471</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="wordVerticalLayout">
-     <property name="spacing">
-      <number>10</number>
-     </property>
-     <item>
-      <widget class="QLabel" name="wordZoneLabel">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Word and translate</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="wordLineEdit">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="translateTextEdit">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="sampleEditingButtonHorizontalLayout">
-       <property name="spacing">
-        <number>15</number>
-       </property>
-       <item>
-        <widget class="QPushButton" name="addSampleButton">
-         <property name="text">
-          <string>Add Sample</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="editSampleButton">
-         <property name="text">
-          <string>Edit Sample</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="deleteSampleButton">
-         <property name="text">
-          <string>Delete Sample</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>591</width>
-      <height>223</height>
-     </rect>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-    <layout class="QVBoxLayout" name="examplesVerticalLayout">
-     <property name="spacing">
-      <number>10</number>
-     </property>
-     <item>
-      <widget class="QLabel" name="exampleZoneLabel">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Examples</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="engExampleTextEdit">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-       <property name="placeholderText">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="rusExampleTextEdit">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-       <property name="placeholderText">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="exampleButtonsHorizontalLayout">
+    <widget class="QWidget" name="mainPage">
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>591</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="wordVerticalLayout">
        <property name="spacing">
         <number>10</number>
        </property>
        <item>
-        <widget class="QPushButton" name="leftExampleButton">
+        <widget class="QLabel" name="wordZoneLabel">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>&lt;&lt;&lt;</string>
+          <string>Word and translate</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="addExampleButton">
+        <widget class="QLineEdit" name="wordLineEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="text">
-          <string>Add Example</string>
+          <string/>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="editExampleButton">
-         <property name="text">
-          <string>Edit Example</string>
+        <widget class="QTextEdit" name="translateTextEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="deleteExampleButton">
+        <layout class="QHBoxLayout" name="sampleEditingButtonHorizontalLayout">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="toAddSampleButton">
+           <property name="text">
+            <string>Add Sample</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editSampleButton">
+           <property name="text">
+            <string>Edit Sample</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deleteSampleButton">
+           <property name="text">
+            <string>Delete Sample</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+      <zorder>translateTextEdit</zorder>
+      <zorder>wordZoneLabel</zorder>
+      <zorder>wordLineEdit</zorder>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>200</y>
+        <width>591</width>
+        <height>223</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="examplesVerticalLayout">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="exampleZoneLabel">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>Delete example</string>
+          <string>Examples</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="rightExampleButton">
+        <widget class="QTextEdit" name="engExampleTextEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="rusExampleTextEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="exampleButtonsHorizontalLayout">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="leftExampleButton">
+           <property name="text">
+            <string>&lt;&lt;&lt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addExampleButton">
+           <property name="text">
+            <string>Add Example</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editExampleButton">
+           <property name="text">
+            <string>Edit Example</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deleteExampleButton">
+           <property name="text">
+            <string>Delete example</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="rightExampleButton">
+           <property name="text">
+            <string>&gt;&gt;&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>440</y>
+        <width>591</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="actionButtonHorizontalLayout">
+       <property name="spacing">
+        <number>20</number>
+       </property>
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="previousSampleButton">
          <property name="text">
-          <string>&gt;&gt;&gt;</string>
+          <string>Previous Sample</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="randomSampleButton">
+         <property name="text">
+          <string>Random Sample</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="nextSampleButton">
+         <property name="text">
+          <string>Next Sample</string>
          </property>
         </widget>
        </item>
       </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>450</y>
-      <width>591</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="actionButtonHorizontalLayout">
-     <property name="spacing">
-      <number>20</number>
-     </property>
-     <property name="leftMargin">
-      <number>10</number>
-     </property>
-     <property name="rightMargin">
-      <number>10</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="previousSampleButton">
-       <property name="text">
-        <string>Previous Sample</string>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="sampleAddPage">
+     <widget class="QPushButton" name="saveNewSampleButton">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>0</y>
+        <width>161</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add to dictionary</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="wordZoneTitleLabel">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>1</y>
+        <width>165</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Word and translate</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>591</width>
+        <height>347</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="sampleAddAreaFormLayout">
+       <property name="horizontalSpacing">
+        <number>10</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="randomSampleButton">
-       <property name="text">
-        <string>Random Sample</string>
+       <property name="verticalSpacing">
+        <number>10</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="nextSampleButton">
-       <property name="text">
-        <string>Next Sample</string>
+       <property name="topMargin">
+        <number>10</number>
        </property>
-      </widget>
-     </item>
-    </layout>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="newWordLineEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="newWordMsgLabel">
+         <property name="text">
+          <string>Type a new word</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTextEdit" name="newWordTranslateTextEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="documentTitle">
+          <string/>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="newWordTranslateMsgLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Type the word's translates</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QTextEdit" name="newWordExampleEngTextEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QTextEdit" name="newWordExampleRusTextEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="newWordExampleRusMsgLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Type a translate of
+the example sentance</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="newWordExampleEngMsgLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Type an example sentance
+that contains the word</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="fromAddToMainPushButton">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>390</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back to dictionary</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
