@@ -13,6 +13,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, dataset: Dataset) -> None:
         super().__init__()
         self.setupUi(self)
+        self.page_idxs = {
+            'main': 0,
+            'add_sample': 1
+        }
+        self.stackedWidget.setCurrentIndex(self.page_idxs['main'])
         self._setup_handlers()
         self.dataset = dataset
         self.current_sample: sample_type = self.dataset.random_choice()
@@ -20,6 +25,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._show_sample(self.current_sample)
 
     def _setup_handlers(self):
+        """Setup event handlers connections."""
         self.rightExampleButton.clicked.connect(
             self._right_example_button_click)
         self.leftExampleButton.clicked.connect(
@@ -30,6 +36,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self._next_sample_button_click)
         self.previousSampleButton.clicked.connect(
             self._previous_sample_button_click)
+        self.toAddSampleButton.clicked.connect(
+            self._to_add_sample_button_click)
+        self.fromAddToMainPushButton.clicked.connect(
+            self._from_add_to_main_button_click)
 
     def _show_sample(self, sample: sample_type, example_idx: int = 0):
         """Show a given sample on this form.
@@ -89,6 +99,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         examples = self.current_sample['examples']
         self.current_example = (self.current_example - 1) % len(examples)
         self._show_example(examples[self.current_example])
+
+    def _to_add_sample_button_click(self):
+        self.stackedWidget.setCurrentIndex(self.page_idxs['add_sample'])
+
+    def _from_add_to_main_button_click(self):
+        self.stackedWidget.setCurrentIndex(self.page_idxs['main'])
 
     def closeEvent(self, close_event):
         self.dataset.save_dataset(Path(sys.argv[0]).parent / 'words.json')
