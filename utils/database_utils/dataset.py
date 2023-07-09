@@ -181,6 +181,7 @@ class Dataset:
                  'example_rus': example_rus
              }]}
         )
+        self._word_to_idx[word] = len(self._samples) - 1
         
     def save_dataset(self, save_path: Union[Path, str]):
         """Save this dataset to a json file.
