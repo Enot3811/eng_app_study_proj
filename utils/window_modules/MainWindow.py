@@ -150,11 +150,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     'QLabel { font-size: 12pt; color : black; }')
         
         if correct:
-            word = word.strip()
+            word = word.strip().capitalize()
             self.newWordLineEdit.setText(word)
+            word = word.lower()
             translate = translate.strip()
             self.newWordTranslateTextEdit.setText(translate)
-            translate = translate.replace(',', ' ').split()
+            translate = [trans.strip().lower()
+                         for trans in translate.split(',')]
             example_eng = example_eng.strip()
             self.newWordExampleEngTextEdit.setText(example_eng)
             example_rus = example_rus.strip()
