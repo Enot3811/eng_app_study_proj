@@ -20,9 +20,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.setCurrentIndex(self.page_idxs['main'])
         self._setup_handlers()
         self.dataset = dataset
-        self.current_sample: sample_type = self.dataset.random_choice()
-        self.current_example = 0
-        self._show_sample(self.current_sample)
+
+        # Service variables
+        self._current_sample: sample_type = self.dataset.random_choice()
+        self._current_example = 0
+
+        # Set up main page
+        self._show_sample(self._current_sample)
 
     def _setup_handlers(self):
         """Setup event handlers connections."""
@@ -71,36 +75,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.rusExampleTextEdit.setText(example['example_rus'])
 
     def _next_sample_button_click(self):
-        current_idx = self.dataset.get_word_index(self.current_sample['word'])
+        current_idx = self.dataset.get_word_index(self._current_sample['word'])
         current_idx = (current_idx + 1) % len(self.dataset)
         sample = self.dataset[current_idx]
         self._show_sample(sample)
-        self.current_sample = sample
+        self._current_sample = sample
 
     def _previous_sample_button_click(self):
-        current_idx = self.dataset.get_word_index(self.current_sample['word'])
+        current_idx = self.dataset.get_word_index(self._current_sample['word'])
         current_idx = (current_idx - 1) % len(self.dataset)
         sample = self.dataset[current_idx]
         self._show_sample(sample)
-        self.current_sample = sample
+        self._current_sample = sample
 
     def _random_sample_button_click(self):
-        current_word = self.current_sample['word']
+        current_word = self._current_sample['word']
         sample = self.dataset.random_choice([current_word])
         self._show_sample(sample)
-        self.current_sample = sample
+        self._current_sample = sample
 
     def _right_example_button_click(self):
-        examples = self.current_sample['examples']
-        self.current_example = (self.current_example + 1) % len(examples)
-        self._show_example(examples[self.current_example])
+        examples = self._current_sample['examples']
+        self._current_example = (self._current_example + 1) % len(examples)
+        self._show_example(examples[self._current_example])
 
     def _left_example_button_click(self):
-        examples = self.current_sample['examples']
-        self.current_example = (self.current_example - 1) % len(examples)
-        self._show_example(examples[self.current_example])
+        examples = self._current_sample['examples']
+        self._current_example = (self._current_example - 1) % len(examples)
+        self._show_example(examples[self._current_example])
 
     def _to_add_sample_button_click(self):
+        self.successful_save_label.setVisible(False)
         self.stackedWidget.setCurrentIndex(self.page_idxs['add_sample'])
 
     def _from_add_to_main_button_click(self):
